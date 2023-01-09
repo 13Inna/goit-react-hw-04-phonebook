@@ -11,11 +11,12 @@ const parseContacts = JSON.parse(mountContacts);
 const App = () => {
   const [contacts, setContacts] = useState(parseContacts);
   const [filter, setFilter] = useState('');
+
   const addContact = ({ name, number }) => {
-    const newContact = {
+  const newContact = {
       id: uuidv4(),
-      name,
-      number,
+      name: name,
+      number: number,
     };
 
        if (contacts.find(contact => contact.name === name)) {
@@ -41,7 +42,7 @@ const App = () => {
   };
 
   const visibleContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
+    contact.name.includes(filter)
   );
     return (
       <div>
